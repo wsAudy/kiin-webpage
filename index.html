@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiin | Closing the gap between what patients live through and what care teams see</title>
+<meta name="description" content="Kiin is building the layer between patients and care systems that turns lived experience into better outcomes.">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #263019;
+  background: #FFFFF3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wordmark { font-family: 'Source Serif 4', serif; }
+
+/* ── Layout ── */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 80px 0;
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: #FEBE0A;
+  color: #263019;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 200;
+  text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+
+/* ── Nav ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #FFFFF3;
+  padding: 16px 0;
+}
+
+.nav-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+
+.nav-wordmark {
+  font-family: 'Source Serif 4', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #263019;
+  line-height: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(38, 48, 25, 0.73);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #263019; }
+
+.nav-cta {
+  background: #FEBE0A !important;
+  color: #263019 !important;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  height: 34px;
+  display: inline-flex !important;
+  align-items: center;
+  transition: background 0.18s, transform 0.1s;
+}
+.nav-cta:hover { box-shadow: 0 0 0 1px rgba(254,190,10,1.0), 0 0 3px 1px rgba(254,190,10,0.6), 0 0 6px 2px rgba(254,190,10,0.15), 0 0 10px 3px rgba(254,190,10,0.04); }
+.nav-cta:active { transform: scale(0.98); }
+
+.nav-cta-mobile {
+  display: none;
+  background: #FEBE0A;
+  color: #263019;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  height: 34px;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.18s;
+}
+
+/* ── Hero ── */
+#hero {
+  padding: 74px 0 80px;
+}
+
+.hero-headline {
+  font-family: 'Source Serif 4', serif;
+  font-size: 40px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.2;
+  color: #263019;
+  margin-bottom: 24px;
+  max-width: 620px;
+  letter-spacing: -0.015em;
+}
+
+/* ── Buttons ── */
+.btn-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn-row .btn-primary,
+.btn-row .btn-secondary {
+  text-align: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #FEBE0A;
+  color: #263019;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.btn-primary:hover { box-shadow: 0 0 0 1px rgba(254,190,10,1.0), 0 0 3px 1px rgba(254,190,10,0.6), 0 0 6px 2px rgba(254,190,10,0.15), 0 0 10px 3px rgba(254,190,10,0.04); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  display: inline-block;
+  background: #C3D0B8;
+  color: #263019;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.btn-secondary:hover { box-shadow: 0 0 0 1px rgba(254,190,10,1.0), 0 0 3px 1px rgba(254,190,10,0.6), 0 0 6px 2px rgba(254,190,10,0.15), 0 0 10px 3px rgba(254,190,10,0.04); }
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ── Section label ── */
+.section-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3F5338;
+  margin-bottom: 14px;
+}
+
+/* ── Problem anchor ── */
+#problem { scroll-margin-top: 64px; }
+
+.section-headline {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #263019;
+  margin-bottom: 20px;
+  max-width: 580px;
+  letter-spacing: -0.015em;
+}
+
+.body-text {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(38, 48, 25, 0.73);
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.body-text-dark {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #263019;
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+/* ── Building section ── */
+#building { background: #C3D0B8; }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(195, 208, 184, 0.65);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #3F5338;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  color: #FFFFF3;
+}
+
+.card-title {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #263019;
+  margin-bottom: 4px;
+}
+
+.card-body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  color: rgba(38, 48, 25, 0.73);
+  line-height: 1.65;
+}
+
+/* ── Founder section ── */
+#founder { background: #FFF5D6; }
+
+.founder-body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(38, 48, 25, 0.73);
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.founder-body-strong {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #263019;
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.founder-sig {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(38, 48, 25, 0.48);
+  margin-top: 28px;
+}
+
+/* ── Connect section ── */
+#connect {
+  background: #FFFFF3;
+}
+
+.lf-list {
+  list-style: none;
+  max-width: 600px;
+  margin-bottom: 0;
+}
+
+.lf-list li {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 18px;
+  color: #263019;
+  font-weight: 500;
+  line-height: 1.65;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(38, 48, 25, 0.10);
+}
+
+.lf-list li span {
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(38, 48, 25, 0.60);
+  margin-top: 4px;
+}
+
+.lf-list li span a {
+  color: #3F5338;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.lf-list li span a:hover { text-decoration: underline; }
+
+/* ── Connect CTA ── */
+.connect-cta {
+  margin-top: 40px;
+}
+
+/* ── Footer ── */
+footer {
+  background: #263019;
+  padding: 36px 0;
+}
+
+.footer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.footer-wordmark {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFF3;
+  line-height: 1.2;
+}
+.footer-tagline {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 243, 0.70);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+.footer-right {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 243, 0.70);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .hero-headline { font-size: 32px; }
+  .section-headline { font-size: 24px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-cta-mobile { display: inline-flex; }
+  section { padding: 56px 0; }
+  #hero { padding: 56px 0 52px; }
+  .btn-row { flex-direction: column; }
+  .btn-row .btn-primary,
+  .btn-row .btn-secondary { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<a href="#hero" class="skip-link">Skip to content</a>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Kiin home">
+      <svg viewBox="-2 -8 116 107" width="34" height="34" aria-hidden="true">
+        <defs><clipPath id="nav-clip"><circle cx="42" cy="55" r="42"/></clipPath></defs>
+        <circle cx="42" cy="55" r="42" fill="#C3D0B8"/>
+        <circle cx="83" cy="23" r="29" fill="#E0C768" clip-path="url(#nav-clip)"/>
+        <circle cx="83" cy="23" r="29" fill="#FEBE0A"/>
+      </svg>
+      <span class="nav-wordmark">Kiin</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">The problem</a></li>
+      <li><a href="#building">The approach</a></li>
+      <li><a href="#founder">Our story</a></li>
+      <li><a href="mailto:hello@kiin.health" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <a href="mailto:hello@kiin.health" class="nav-cta-mobile">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="container">
+    <h1 class="hero-headline">The gap between what patients live through and what care teams are able to see is where people fall through the cracks.</h1>
+
+    <p class="section-label" id="problem" style="margin-top: 56px;">The problem</p>
+
+    <p class="body-text">Between clinic visits, patients carry fear, confusion, side effects, and questions they are not sure are worth raising. Families hold observations they do not know whether or where to share. When uncertainties arise day to day, rarely is there an easy way to reach appropriate medical professionals for clarification.</p>
+
+    <p class="body-text">Clinicians, in turn, work from whatever reaches them in scheduled consults, often within tight fifteen-minute windows.</p>
+
+    <p class="body-text">Patients underreport. Symptoms escalate unnoticed. Decisions are made without the full picture. Caregivers burn out behind the scenes.</p>
+
+    <h2 class="section-headline" style="margin-top: 28px; margin-bottom: 28px;">Care systems can only act on what reaches them. Most of what patients experience never does.</h2>
+
+    <p class="body-text">The information exists. It just remains within the daily lives of patients and families, with no reliable path to the professionals who can take necessary action.</p>
+  </div>
+</section>
+
+<!-- ── Building ── -->
+<section id="building">
+  <div class="container">
+    <p class="section-label">The approach</p>
+    <h2 class="section-headline">Capturing what currently gets lost between and beyond appointments.</h2>
+    <p class="body-text">Kiin is being built to help patients and families express and capture what they are living through. Captured information is used to support self-agency and to provide insights that matter to their care teams.</p>
+    <p class="body-text">We are building with patients, caregivers, clinicians, and care professionals, so that neither the patient nor their support systems are overwhelmed.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+        </div>
+        <div class="card-content">
+          <div class="card-title">For patients</div>
+          <p class="card-body">A companion that helps put their symptoms, emotions, and experiences into words, capturing what typically gets lost before being recognised as significant or reaching a clinician.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M15 15 L21 21"/></svg>
+        </div>
+        <div class="card-content">
+          <div class="card-title">For clinicians</div>
+          <p class="card-body">Structured, real-time insight into how patients are doing between visits, surfacing the insights that matter clinically so teams can act earlier, not only at the next appointment.</p>
+        </div>
+      </div>
+      <div class="card" style="padding-bottom: 32px;">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="card-content">
+          <div class="card-title">For caregivers &amp; families</div>
+          <p class="card-body">A way to contribute observations that often hold clinical value: changes in mood, appetite, mobility, and cognition that families see but systems do not.</p>
+        </div>
+      </div>
+      <div class="card" style="padding-bottom: 32px;">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 12h5m4-5.5-5 4.5m0 2 5 4.5"/></svg>
+        </div>
+        <div class="card-content">
+          <div class="card-title">For the system</div>
+          <p class="card-body">Longitudinal, whole-person data that helps healthcare systems understand outcomes beyond clinical endpoints and inform better care design at scale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Founder ── -->
+<section id="founder">
+  <div class="container">
+    <p class="section-label">Behind Kiin</p>
+
+    <p class="founder-body">It took decades working across scientific research, biomedical devices, commercial and clinical systems for me to see the limits of what knowledge and logic can fix. I came to understand how complex and human the road is from discovery to solutions that both reach and truly work for patients and families.</p>
+
+    <p class="founder-body">That became personal when my mother had cancer. I read every report, followed every update, and only in retrospect realised that critical parts of her experience had gone unseen. After her surgery, regular follow-ups over the next twelve months flagged nothing. One day she collapsed, and scans revealed tumours in multiple organs.</p>
+
+    <p class="founder-body">What hit me was not just the loss, but the realization that even when everyone tries their best, patients and loved ones can still fall through gaps that no one clearly sees or owns. Those gaps live in what is not seen, not said, not surfaced, and not acted on until too late.</p>
+
+    <p class="founder-body-strong">Kiin is my commitment to help close that gap. We are building so that the lived realities of patients and families are surfaced earlier, understood more fully, and translated into better support and care.</p>
+
+    <p class="founder-sig">&mdash; Founder, Kiin</p>
+  </div>
+</section>
+
+<!-- ── Connect ── -->
+<section id="connect">
+  <div class="container">
+    <p class="section-label">Connect</p>
+    <p class="body-text">If any part of this page resonates with you, please drop a line, even if only to say "yes, I have felt this gap too." Your experience matters, and we would be grateful to hear from you.</p>
+
+    <div class="connect-cta">
+      <div class="btn-row">
+        <a href="voice_form.html" class="btn-primary">Share your experience</a>
+        <a href="mailto:hello@kiin.health" class="btn-secondary">hello@kiin.health</a>
+      </div>
+    </div>
+
+    <p class="body-text" style="margin-top: 40px;">We would appreciate hearing from:</p>
+
+    <ul class="lf-list">
+      <li>Patients and caregivers
+        <span>With cancer or serious illness journeys to share, in any role or stage, current or past.</span>
+      </li>
+      <li>Clinicians, care professionals, and community
+        <span>Involved in cancer care, including nurses, medical social workers, therapists, and volunteers.</span>
+      </li>
+      <li>Researchers and academics
+        <span>Exploring gaps in communication, psychosocial support, and patient-reported outcomes, and working toward improved patient experiences and more human-centered serious illness care.</span>
+      </li>
+      <li>Impact-minded investors
+        <span>With a personal connection to this space, who believe that the patient experience is an undervalued lens in holistic healthcare.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div style="display:flex; flex-direction:column; justify-content:flex-end;">
+        <div style="display:flex; align-items:flex-end; gap:10px; margin-bottom:3px;">
+          <svg viewBox="-2 -8 116 107" width="26" height="24" aria-hidden="true">
+            <defs><clipPath id="footer-clip"><circle cx="42" cy="55" r="42"/></clipPath></defs>
+            <circle cx="42" cy="55" r="42" fill="#C3D0B8"/>
+            <circle cx="83" cy="23" r="29" fill="#E0C768" clip-path="url(#footer-clip)"/>
+            <circle cx="83" cy="23" r="29" fill="#FEBE0A"/>
+          </svg>
+          <div class="footer-wordmark">Kiin</div>
+        </div>
+        <div class="footer-tagline">Closing the gap between what patients live through and what the system sees.</div>
+      </div>
+    </div>
+    <div class="footer-right">&copy; 2026 Kiin Pte Ltd</div>
+  </div>
+</footer>
+
+</body>
+</html>
