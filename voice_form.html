@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#FFFFF3;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Kiin — Your voice</title>
 <meta name="description" content="Share your experience. Your lived experience could help someone else facing a similar situation.">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -10,7 +11,7 @@
 
 /* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: light; background: #FFFFF3; }
 
 body {
   font-family: 'Source Sans 3', sans-serif;
@@ -19,6 +20,8 @@ body {
   color: #263019;
   background: #FFFFF3;
   -webkit-font-smoothing: antialiased;
+  forced-color-adjust: none;
+  -webkit-forced-color-adjust: none;
 }
 
 /* ── Layout ── */
@@ -364,7 +367,7 @@ footer {
   <div class="container">
     <p class="section-label">Your voice</p>
     <h2 class="q-headline">What if people who most urgently need support are also the ones least likely to speak up?</h2>
-    <p class="q-sub">If you've faced a serious illness, whether as a patient, a caregiver, a friend, or someone who has lost a person they love, and never quite found the right moment or place to say what you've carried, this is for you.</p>
+    <p class="q-sub">If you've been close to serious illness, as a patient, a loved one, or someone who cares, this is for you.</p>
     <p class="q-sub-emphasis">Sharing your experience could help someone else.</p>
 
     <form class="q-form" id="experience-form" onsubmit="handleExperienceSubmit(event)">
@@ -435,19 +438,57 @@ function toggleInnerHint(textarea) {
   hint.style.opacity = textarea.value.length > 0 ? '0' : '1';
 }
 
-function handleExperienceSubmit(e) {
+const SUPABASE_URL = 'https://sqaokwmbgoqvdilszcdw.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_ZDcO7ACNSTVivYQ4XMNBgg_P1Z8dzK-';
+
+async function handleExperienceSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const data = {
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  const payload = {
+    form_version: 'website-vf1-v1',
     role: form.role.value,
-    experience: form.q1.value,
-    email: form.email.value
+    q1: form.q1.value.trim(),
+    email: form.email.value.trim() || null
   };
-  const body = Object.entries(data)
-    .filter(([k, v]) => v && v.trim())
-    .map(([k, v]) => `${k.toUpperCase()}:\n${v}`)
-    .join('\n\n');
-  window.location.href = `mailto:hello@kiin.health?subject=Shared Experience — Kiin&body=${encodeURIComponent(body)}`;
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/website-vf1_submissions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error('Submission failed');
+
+    form.innerHTML = `
+      <div style="padding: 28px 32px; background: #FEBE0A; border-radius: 12px; max-width: 520px; box-shadow: 0 0 0 1px rgba(254,190,10,1.0), 0 0 12px 4px rgba(254,190,10,0.4), 0 0 32px 8px rgba(254,190,10,0.15);">
+        <p style="font-size: 20px; font-weight: 600; color: #263019; margin-bottom: 10px;">Thank you for sharing.</p>
+        <p style="color: rgba(38,48,25,0.73); line-height: 1.75;">Your experience will help shape what Kiin becomes and may help someone else going through a similar situation.</p>
+      </div>
+    `;
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  } catch (err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Share your experience';
+    const errorMsg = form.querySelector('#submit-error');
+    if (!errorMsg) {
+      const p = document.createElement('p');
+      p.id = 'submit-error';
+      p.style.cssText = 'color: #FEBE0A; margin-top: 12px; font-size: 15px;';
+      p.innerHTML = 'Something went wrong. Please try again, or reach us directly at <a href="mailto:hello@kiin.health" style="color: #FEBE0A; text-decoration: underline;">hello@kiin.health</a>.';
+      submitBtn.after(p);
+    }
+  }
 }
 </script>
 
