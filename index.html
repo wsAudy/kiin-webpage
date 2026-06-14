@@ -90,14 +90,19 @@ nav {
   list-style: none;
 }
 
-.nav-links a {
+.nav-links a:not(.nav-cta) {
   font-size: 16px;
   font-weight: 500;
   color: rgba(38, 48, 25, 0.73);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, opacity 0.3s;
 }
-.nav-links a:hover { color: #263019; }
+.nav-links a:not(.nav-cta):hover { color: #263019; }
+
+.nav-links.connect-visible a:not(.nav-cta) {
+  opacity: 0;
+  pointer-events: none;
+}
 
 .nav-cta {
   background: #FEBE0A !important;
@@ -109,7 +114,15 @@ nav {
   height: 34px;
   display: inline-flex !important;
   align-items: center;
-  transition: background 0.18s, transform 0.1s;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.1s, opacity 0.3s, visibility 0.3s;
+  opacity: 1;
+  visibility: visible;
+}
+.nav-cta.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 .nav-cta:hover { box-shadow: 0 0 0 1px rgba(254,190,10,1.0), 0 0 3px 1px rgba(254,190,10,0.6), 0 0 6px 2px rgba(254,190,10,0.15), 0 0 10px 3px rgba(254,190,10,0.04); }
 .nav-cta:active { transform: scale(0.98); }
@@ -206,6 +219,7 @@ nav {
 
 /* ── Problem anchor ── */
 #problem { scroll-margin-top: 64px; }
+#connect-anchor { scroll-margin-top: 52px; }
 
 .section-headline {
   font-family: 'Source Sans 3', sans-serif;
@@ -240,6 +254,14 @@ nav {
 
 /* ── Building section ── */
 #building { background: #C3D0B8; }
+
+.building-connect-link {
+  color: #3F5338;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.building-connect-link:hover { text-decoration: underline; }
 
 .cards-grid {
   display: grid;
@@ -336,33 +358,27 @@ nav {
 
 .lf-list li {
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 18px;
-  color: #263019;
-  font-weight: 500;
+  font-size: 16px;
+  color: rgba(38, 48, 25, 0.73);
+  font-weight: 400;
   line-height: 1.65;
-  padding: 0px 0;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(38, 48, 25, 0.10);
 }
 
-.lf-list li span {
-  display: block;
-  font-weight: 400;
-  font-size: 16px;
-  color: rgba(38, 48, 25, 0.60);
-  margin-top: 4px;
+.lf-list li:last-child {
+  border-bottom: none;
 }
 
-.lf-list li span a {
-  color: #3F5338;
-  text-decoration: underline;
-  font-weight: 500;
+.lf-list-title {
+  font-weight: 600;
+  color: #263019;
 }
-.lf-list li span a:hover { text-decoration: underline; }
 
 /* ── Connect CTA ── */
 .connect-cta {
-  margin-top: 18px;
-  margin-bottom: 33px;
+  margin-top: 28px;
+  margin-bottom: 32px;
 }
 
 /* ── Footer ── */
@@ -478,7 +494,6 @@ footer {
     <p class="section-label">The approach</p>
     <h2 class="section-headline">Capturing what currently gets lost between and beyond appointments.</h2>
     <p class="body-text">Kiin is being built to help patients and families express and capture what they are living through. Captured information is used to support self-agency and to provide insights that matter to their care teams.</p>
-    <p class="body-text">We are building with patients, caregivers, clinicians, and care professionals, so that neither the patient nor their support systems are overwhelmed.</p>
 
     <div class="cards-grid">
       <div class="card">
@@ -518,6 +533,8 @@ footer {
         </div>
       </div>
     </div>
+
+    <p class="body-text" style="margin-top: 32px;">We are seeking to design with patients, caregivers, clinicians, and care professionals, so that neither the patient nor their support systems are overwhelmed. <a href="#connect-anchor" class="building-connect-link">Connect with us ↓</a></p>
   </div>
 </section>
 
@@ -532,7 +549,7 @@ footer {
 
     <p class="founder-body">What hit me was not just the loss, but the realization that even when everyone tries their best, patients and loved ones can still fall through gaps that no one clearly sees or owns. Those gaps live in what is not seen, not said, not surfaced, and not acted on until too late.</p>
 
-    <p class="founder-body-strong">Kiin is my commitment to help close that gap. We are building so that the lived realities of patients and families are surfaced earlier, understood more fully, and translated into better support and care.</p>
+    <p class="founder-body-strong">Kiin is my commitment to help close that gap. I seek a future where the lived realities of patients and families are surfaced earlier, understood more fully, and translated into better support and care.</p>
 
     <p class="founder-sig">&mdash; Founder, Kiin</p>
   </div>
@@ -542,30 +559,23 @@ footer {
 <section id="connect">
   <div class="container">
     <p class="section-label">Connect</p>
-    <p class="body-text">If any part of this page resonates with you, please drop a line, even if only to say "yes, I have felt this gap too." Your experience matters, and we would be grateful to hear from you.</p>
+    <p id="connect-anchor" class="body-text" style="margin-bottom: 0;">If any part of this page resonates with you, please drop us a line, even if only to say "yes, I have felt this gap too."</p>
+    <p style="font-family: 'Source Serif 4', serif; font-style: italic; font-size: 20px; color: #263019; line-height: 1.4; margin: 14px 0 0;">Your experience matters, and we would be grateful to hear from you.</p>
 
     <div class="connect-cta">
       <div class="btn-row">
-        <a href="https://wsaudy.github.io/kiin-webpage/voice_form.html" class="btn-primary">Share your experience</a>
         <a href="mailto:hello@kiin.health" class="btn-secondary">hello@kiin.health</a>
+        <a href="voice_form.html" class="btn-primary">Share your experience</a>
       </div>
     </div>
 
-    <p class="body-text" style="margin-top: 0; margin-bottom: 0px;">We would appreciate hearing from:</p>
+    <p class="body-text" style="margin-top: 0; margin-bottom: 0; color: #263019;">We would appreciate learning from:</p>
 
     <ul class="lf-list">
-      <li>Patients and caregivers
-        <span>With cancer or serious illness journeys to share, in any role or stage, current or past.</span>
-      </li>
-      <li>Clinicians, care professionals, and community
-        <span>Involved in cancer care, including nurses, medical social workers, therapists, and volunteers.</span>
-      </li>
-      <li>Researchers and academics
-        <span>Exploring gaps in communication, psychosocial support, and patient-reported outcomes, and working toward improved patient experiences and more human-centered serious illness care.</span>
-      </li>
-      <li>Impact-minded investors
-        <span>With a personal connection to this space, who believe that the patient experience is an undervalued lens in holistic healthcare.</span>
-      </li>
+      <li><span class="lf-list-title">Patients and caregivers </span>with cancer or serious illness journeys to share, in any role or stage, current or past.</li>
+      <li><span class="lf-list-title">Clinicians, care professionals, and community </span>involved in cancer care, including nurses, medical social workers, therapists, and volunteers.</li>
+      <li><span class="lf-list-title">Researchers and academics </span>exploring gaps in communication, psychosocial support, and patient-reported outcomes, and working toward improved patient experiences and more human-centered serious illness care.</li>
+      <li><span class="lf-list-title">Impact investors </span>with a personal connection to this space, who believe that the patient experience is an undervalued lens in holistic healthcare.</li>
     </ul>
   </div>
 </section>
@@ -590,6 +600,36 @@ footer {
     <div class="footer-right">&copy; 2026 Kiin Pte Ltd</div>
   </div>
 </footer>
+
+<script>
+(function() {
+  var navCta = document.querySelector('.nav-cta');
+  var navCtaMobile = document.querySelector('.nav-cta-mobile');
+  var navLinks = document.querySelector('.nav-links');
+  var connectCta = document.querySelector('.connect-cta');
+
+  if (!connectCta || !navCta) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navCta.classList.add('hidden');
+        navCtaMobile && navCtaMobile.classList.add('hidden');
+        navLinks && navLinks.classList.add('connect-visible');
+      } else {
+        navCta.classList.remove('hidden');
+        navCtaMobile && navCtaMobile.classList.remove('hidden');
+        navLinks && navLinks.classList.remove('connect-visible');
+      }
+    });
+  }, {
+    threshold: 0,
+    rootMargin: '-66px 0px 0px 0px'
+  });
+
+  observer.observe(connectCta);
+})();
+</script>
 
 </body>
 </html>
